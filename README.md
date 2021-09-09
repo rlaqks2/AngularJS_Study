@@ -1,15 +1,7 @@
-# Traders-App
+# AngularJS+SpringJPA+PostgreSQL 
 
-Traders app developed in Spring, Angular JS and using Postgres database.
+App developed in Spring, Angular JS and using Postgres database.
 
-**Instructions:**
-* Set property: spring.jpa.hibernate.ddl-auto=create in application.properties. First time you run, then change it to spring.jpa.hibernate.ddl-auto=validate.
-* Set postgres username and password in application.properties.
-* Insert some data in the database running the script data.sql or create your own.
-
-**Credits:**
-* [dlbunker - ps-spring-boot-resources](https://github.com/dlbunker/ps-spring-boot-resources) angular JS client and integration with Spring boot.
-* [jagdeepsingh91 - Angular Multiple Select](https://www.npmjs.com/package/angular-multiple-select) to Handle multiple selection in the client.
 
 **Version 1 (Released):**
 
@@ -33,8 +25,6 @@ This version includes a REST API with all CRUD operations over entities Supplier
 - API require authentication to get data.
 - Only admin users can add users and edit his role but registration is open.
 
-
-**App demo:** [tradersapp-jordanec.herokuapp.com](https://tradersapp-jordanec.herokuapp.com/)
 
 ![alt tag](src/main/resources/public/images/app-screenshots/home.jpg?raw=true)
 
