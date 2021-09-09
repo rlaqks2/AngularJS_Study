@@ -1,0 +1,24 @@
+{
+  "name": "angularjs_study",
+  "version": "1.0.0",
+  "description": "Studying angularjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rlaqks2/AngularJS_Study.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rlaqks2/AngularJS_Study/issues"
+  },
+  "homepage": "https://github.com/rlaqks2/AngularJS_Study#readme",
+  "dependencies": {
+    "angular-bootstrap-starter": "^1.0.1",
+    "angularjs": "0.0.1",
+    "nodejs": "0.0.0"
+  }
+}

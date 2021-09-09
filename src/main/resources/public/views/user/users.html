@@ -1,0 +1,29 @@
+<div class="container pad-top">
+    <!--사용자의 정보가 있고 role이 admin일 경우만 보여준다.-->
+  <a ng-show="user && cancreate" ui-sref="newUser" class="btn-primary btn-lg nodecoration">Add New User</a>
+  <table class="table entitytable">
+      <tr>
+          <td><h3>All Users</h3></td>
+          <td></td>
+      </tr>
+      <tr>
+      	<td><strong>Username</strong></td>
+        <td><strong>Email</strong></td>
+        <td><strong>Role</strong></td>
+          <td><strong>Action</strong></td>
+      </tr>
+      <tr ng-repeat="user in users">
+          <td>{{user.username}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.role}}</td>
+          <td>
+              <!--user 의 역할이 관리자이면 다보여주며, 아니면 해당 user 의 view 만 보여준다.-->
+              <a ng-show="cancreate || user.username == currentUser" class="btn btn-primary" ui-sref="viewUser({id:user.id})">View</a>
+              <!--user 정보가 있거나, 관리자여야지만 보여진다.-->
+              <a ng-show="user && cancreate" class="btn btn-danger"  ng-click="deleteUser(user)">Delete</a>
+          </td>
+      </tr>
+  </table>
+    <!-- error message-->
+  <div class="alert alert-danger margin-top-2" ng-show="message">{{message}}</div>
+</div>

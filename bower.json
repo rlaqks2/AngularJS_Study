@@ -1,0 +1,22 @@
+{
+  "name": "ng-tradersapp",
+  "dependencies": {
+  "angularMultipleSelect": "angular-multiple-select#^1.1.2",
+    "angular-local-storage": "^0.5.2"
+  },
+  "homepage": "https://github.com/JordanEC/Traders-App",
+  "authors": [
+    "Jordan Espinoza <jordan47ec@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src/main/resources/public/bower_components",
+    "test",
+    "tests"
+  ]
+}

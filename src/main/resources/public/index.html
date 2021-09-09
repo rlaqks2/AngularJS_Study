@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link rel="icon" href="favicon.ico" />
+
+    <title>Traders App - v2</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Bootstrap theme -->
+    <link href="lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" />
+    <!-- Angular CSP-->
+    <link href="lib/angular/css/angular-csp.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet" />
+    
+	<link href="bower_components/angularMultipleSelect/build/multiple-select.min.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="lib/html5shiv/html5shiv.min.js"></script>
+      <script src="lib/respond/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- require -->
+    <script src="lib/require/require.js"></script>
+
+    <!-- angularjs -->
+    <link href="lib/angular/css/angular-csp.css" rel="stylesheet" />
+    <script src="lib/angular/js/angular.js"></script>
+    <script src="lib/angular/js/angular-animate.js"></script>
+    <script src="lib/angular/js/angular-resource.js"></script>
+    <script src="lib/angular/js/angular-ui-router.js"></script>
+    <script src="lib/angular/js/angular-ui-bootstrap-tpls.js"></script>
+
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+    <script src="js/nav-controller.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/services.js"></script>
+  </head>
+
+  <body>
+    <!--
+      <nav> tag내에서는 controller를 nav-controller.js 가져오며,
+      여러 함수들을 통해 처리한다.
+    -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" ng-controller="nav">
+      <div class="container">
+        <div class="navbar-header">
+          <!--Header Tab에 대한 버튼이며 반응형으로 화면의 크기가 줄면 앱 형태로 변화-->
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <!--화면 크기가 줄면 메뉴 모형으로 변경되며, 줄 3개를 긋는다.-->
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!--
+            nav controller에서 title을 "Traders app"으로 지정하였으며,
+            ng-bind directive를 통해 가져온다.
+            * ng-bind: 단방향 data 처리할 때 사용되며, 정적인 data 처리
+              ng-model: 양방향 data 처리할 때 사용되며, input 요소 처리
+          -->
+          <!--
+            양방향 테스트
+          -->
+          <!--<input ng-model="test"><a>{{test}}</a>-->
+          <a class="navbar-brand" href="#/" ng-bind="title"></a>
+        </div>
+
+        <!--HTML을 script로 표현한 것이며,
+          해당 script는 Header에 표시된 data를 의미한다.-->
+        <script type="text/ng-template" id="nav-item.html">
+          <span ng-if="page.name && !page.url">{{page.name}}</span>
+
+          <!--
+              실제로 user, suppliers, categories, products 가 그려지는 영역
+              href 를 통해 url 로 이동한다. (ex_ #/users)
+          -->
+          <a ng-if="page.name && page.url && !(page.subPages && page.subPages.length)" href="{{page.url}}">{{page.name}}</a>
+          <!-- 화면 크기가 줄어들 경우 dropdown 으로 list 를 button 으로 내려주는 영역-->
+          <a ng-if="page.name && page.url && page.subPages && page.subPages.length" href="{{page.url}}" data-toggle="dropdown" role="button" aria-expanded="false"
+          class="dropdown-toggle">{{page.name}} <span class="caret"></span>
+          </a>
+          <ul ng-if="page.subPages && page.subPages.length" class="dropdown-menu" role="menu">
+            <li ng-class="{'divider': !page.name && !page.url, 'dropdown-header': page.name && !page.url, active: isUrl(page.url)}"
+                ng-repeat="page in page.subPages" ng-include="'nav-item.html'">
+            </li>
+          </ul>
+        </script>
+
+
+        <!--Header에 위치한 navigation에 대한 event 이다.-->
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <!--User, Suppliers, Categories, Products-->
+            <!--ng-repeat은 반복을 의미하며, pages는 nav-controller에서 $scope.pages 안에 있는 정보를 가져온 것을 의미한다.-->
+            <!--ng-class는 active를 통해 함수를 실행하며, page.url은 pages에서 가져온 data를 의미한다.-->
+            <!--ng-include를 통해 HTML을 script로 표현한 것을 가져오기 위해 사용 (nav에 작성 될 data를 표현)-->
+            <!--화면크기가 줄면 list 를 dropdown 으로 출력해주는 영역-->
+            <li ng-repeat="page in pages" ng-class="{active: isUrl(page.url)}" ng-include="'nav-item.html'"></li>
+
+            <!--Login이 되지 않았을 경우-->
+            <li class="auth" ng-show="!user.authenticated"> <a ui-sref="login">Login</a></li>
+            <li class="auth" ng-show="!user.authenticated"> <a ui-sref="register">Register</a></li>
+
+            <!--Login이 되었을 경우-->
+            <li class="auth" ng-show="user.authenticated"> <label>Hi, {{user.name}}!</label></li>
+            <li class="auth" ng-show="user.authenticated" ng-click="logout()"> <a ui-sref="login">Logout</a> </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+
+    </nav>
+
+    <div class="ui-view-container">
+      <div ui-view>
+        <!-- default content can go here but there will be a flicker on some pages loading -->
+      </div>
+    </div>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="bower_components/angularMultipleSelect/build/multiple-select.min.js"></script>
+    <script src="bower_components/angular-local-storage/dist/angular-local-storage.min.js"></script>
+    <script src="lib/jquery/jquery.min.js"></script>
+    <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="lib/assets/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>

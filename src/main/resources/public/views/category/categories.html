@@ -1,0 +1,23 @@
+<div class="container pad-top">
+  <a ng-show="user" ui-sref="newCategory" class="btn-primary btn-lg nodecoration">Add New Category</a>
+  <table class="table entitytable">
+      <tr>
+          <td><h3>All Categories</h3></td>
+          <td></td>
+      </tr>
+      <tr>
+      	<td><strong>Name</strong></td>
+        <td><strong>Description</strong></td>
+        <td><strong>Action</strong></td>
+      </tr>
+      <tr ng-repeat="category in categories">
+          <td>{{category.name}}</td>
+          <td>{{category.description}}</td>
+          <td>
+              <a class="btn btn-primary" ui-sref="viewCategory({id:category.id})">View</a>
+              <a class="btn btn-danger"  ng-click="deleteCategory(category)">Delete</a>
+          </td>
+      </tr>
+  </table>
+  <div class="alert alert-danger margin-top-2" ng-show="message">{{message}}</div>
+</div>
