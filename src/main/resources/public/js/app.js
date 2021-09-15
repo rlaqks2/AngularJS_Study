@@ -179,6 +179,13 @@
 			        templateUrl: viewsPrefix + 'product/product-edit.html',
 			        controller:'ProductEditController'
 		    })
+
+		    .state('Excel',{
+                    url:'/excel/read',
+                    templateUrl: viewsPrefix + "Excel.html",
+                    controller:'ExcelController'
+            })
+
 	})
 	.directive('updateTitle', ['$rootScope', '$timeout',
 		function($rootScope, $timeout) {

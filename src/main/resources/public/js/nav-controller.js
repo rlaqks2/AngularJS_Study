@@ -48,6 +48,10 @@ angular.module('navController', [])
 			{
 				name: 'Products',
 				url: '#/products'
-			}
+			},
+            {
+                name: 'Excel',
+                url: '#/excel/read'
+            }
 		]
 	});

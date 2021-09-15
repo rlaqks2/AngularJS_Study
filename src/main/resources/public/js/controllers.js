@@ -30,6 +30,8 @@ angular.module('app.controllers', [])
 		$scope.cancreate =  AuthService.user.principal.role == 'ROLE_ADMIN';
 	    $scope.currentUser = AuthService.user.name;
 	}
+
+	/* 사용자 삭제 */
 	$scope.deleteUser = function(user) {
 		if (popupService.showPopup('Really delete this?')) {
 			user.$delete(function() {
@@ -38,6 +40,8 @@ angular.module('app.controllers', [])
 			});
 	    }
 	};
+
+
 })
 
 .controller('UserViewController', function($scope, $stateParams, User) {
@@ -202,4 +206,18 @@ angular.module('app.controllers', [])
 	};
 	
 	$scope.loadProduct();
+})
+
+
+
+
+/* Excel 테스트 */
+.controller('ExcelController', function($scope){
+    $scope.uploadFile = function(){
+       var file = $scope.myFile;
+       console.log('file is ' );
+       //console.dir(file);
+       //var uploadUrl = "http://localhost:8080/iot_api/deviceExcelUpload";
+       //fileUpload.uploadFileToUrl(file, uploadUrl);
+   };
 });

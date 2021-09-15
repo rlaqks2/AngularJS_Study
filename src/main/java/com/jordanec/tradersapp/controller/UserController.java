@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import com.jordanec.tradersapp.model.Category;
 import com.jordanec.tradersapp.model.Supplier;
 import com.jordanec.tradersapp.model.User;
@@ -83,4 +84,5 @@ public class UserController {
 	        userRepository.delete(existingUser);
 	        return existingUser;
 	    }
+
 }
