@@ -212,12 +212,28 @@ angular.module('app.controllers', [])
 
 
 /* Excel 테스트 */
-.controller('ExcelController', function($scope){
-    $scope.uploadFile = function(){
-       var file = $scope.myFile;
-       console.log('file is ' );
-       //console.dir(file);
-       //var uploadUrl = "http://localhost:8080/iot_api/deviceExcelUpload";
-       //fileUpload.uploadFileToUrl(file, uploadUrl);
-   };
+.controller('ExcelController', function($scope, Upload){
+      //파일을 선택하면 전송하기 전에 파일 데이터를 보관해두었다가 send 호출 시 upload 서비스를 이용하여 전송
+      $scope.onFileSelect2 = function($files) {
+        $scope.selectedFile = $files[0];
+      };
+
+      $scope.send = function () {
+        if($scope.selectedFile !== undefined){
+        console.log('select file!');
+         $scope.upload = Upload.upload({
+            url: '/file',
+            method: 'POST',
+            file:$scope.selectedFile,
+            //data 속성으로 별도의 데이터를 보냄.
+            data : {
+              email : $scope.email
+            },
+            fileFormDataName : 'fileField1',
+          }).success(function(data, status, headers, config) {
+            //서버에서 전송시 보낸 email을 그대로 응답 데이터로 전달함.
+            $scope.successMsg = data.email+"로 전송 완료";
+          });
+        }
+      };
 });

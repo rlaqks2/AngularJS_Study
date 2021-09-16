@@ -1,10 +1,28 @@
 <div class="container pad-top">
-    <!--사용자의 정보가 있고 role이 admin일 경우만 보여준다.-->
 
-
-    <div ng-cloak>
-        <input type="file" file-model="myFile"/>
-        <button ng-click="uploadFile()">upload me</button>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <!-- 생략 -->
+            <h3>버튼 클릭 시 입력데이터와 파일 전송</h3>
+            <div class="example">
+                <form role="form" name="uploadForm">
+                    <div class="form-group">
+                        <label>파일</label>
+                        <input type="file" ngf-select="onFileSelect2($files)">
+                        <br>
+                        <label>이메일</label>
+                        <input type="email" ng-model="email" class="form-control" placeholder="이메일">
+                    </div>
+                    <!-- 버튼 클릭시 send 메소드 호출 -->
+                    <button type="button" class="btn btn-default" ng-click="send()" ng-disabled="selectedFile == undefined">button</button>
+                </form>
+                <br>
+                <!-- 전송 성공시 메시지 출력 -->
+                <div>
+                    {{ successMsg }}
+                </div>
+            </div>
+        </div>
     </div>
 
 
@@ -13,7 +31,7 @@
       <tr>
           <td><h3>Excel upload</h3></td>
           <td></td>
-          <td><a  class="btn btn-primary"  ng-click="">업로드</a></td>
+          <td><a  class="btn btn-primary"  ng-click="send()" ng-click="">업로드</a></td>
 
       </tr>
       <!--<tr>
