@@ -1,30 +1,45 @@
-# AngularJS+SpringJPA+PostgreSQL 
+# CRUD Web
 
-App developed in Spring, Angular JS and using Postgres database.
+A simple minimalistic app with
+
+Client Side - AngularJS
+
+Server Side - Spring boot
+
+Database - PostgreSQL
 
 
-**Version 1 (Released):**
+## Download
 
-This version includes a REST API with all CRUD operations over entities Supplier, Category and Product. Paths:
+``` shell
+$ git clone https://github.com/rlaqks2/angularJS_study.git
+```
 
-* /api/v1/suppliers
-* /api/v1/categories
-* /api/v1/products
+## Run Server Side
 
-**Version 2 (Released):**
+``` shell
+npm start
+```
 
-- Paths:
+# Setup Database
 
-	/api/v2/suppliers	
-	/api/v2/categories
-	/api/v2/products	
-	/api/v2/users
+1. File name \
+- application-dev.properties
+2. Database information
+- spring.datasource.platform=postgres
+- spring.datasource.driver-class-name=org.postgresql.Driver 
+- spring.datasource.url= jdbc:postgresql://localhost:5432/postgres 
+- spring.datasource.username=postgres 
+- spring.datasource.password=admin
+
+## Description
 
 - User registration and authentication implemented.
 - Browse through users registered in the app.
 - API require authentication to get data.
 - Only admin users can add users and edit his role but registration is open.
 
+## Example Screenshots
 
 ![alt tag](src/main/resources/public/images/app-screenshots/home.jpg?raw=true)
 
@@ -40,8 +55,5 @@ This version includes a REST API with all CRUD operations over entities Supplier
 
 ![alt tag](src/main/resources/public/images/app-screenshots/product.jpg?raw=true)
 
-![alt tag](src/main/resources/public/images/app-screenshots/product add.jpg?raw=true)
-
-![alt tag](src/main/resources/public/images/app-screenshots/product edit.jpg?raw=true)
 
 
