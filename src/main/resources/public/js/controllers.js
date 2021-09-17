@@ -220,19 +220,15 @@ angular.module('app.controllers', [])
 
       $scope.send = function () {
         if($scope.selectedFile !== undefined){
-        console.log('select file!');
          $scope.upload = Upload.upload({
-            url: '/file',
+            url: '/excel/read',
             method: 'POST',
+            headers: {"Content-Type": "multipart/form-data"},
             file:$scope.selectedFile,
-            //data 속성으로 별도의 데이터를 보냄.
-            data : {
-              email : $scope.email
-            },
             fileFormDataName : 'fileField1',
           }).success(function(data, status, headers, config) {
             //서버에서 전송시 보낸 email을 그대로 응답 데이터로 전달함.
-            $scope.successMsg = data.email+"로 전송 완료";
+            $scope.datas = data;
           });
         }
       };

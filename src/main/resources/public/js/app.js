@@ -19,7 +19,8 @@
         (서버에 REST API 를 사용하기 위함)
 
     */
-	var app = angular.module('app', ['ui.router', 'navController', 'ngAnimate', 'ui.bootstrap', 'ngResource', 'app.controllers', 'app.services', 'multipleSelect', 'LocalStorageModule', 'ngFileUpload'])
+	var app = angular.module('app', ['ui.router', 'navController', 'ngAnimate', 'ui.bootstrap', 'ngResource',
+	'app.controllers', 'app.services', 'multipleSelect', 'LocalStorageModule', 'ngFileUpload'])
 
 	// define for requirejs loaded modules
 	define('app', [], function() { return app; });
@@ -55,9 +56,9 @@
 	    페이지 별로 인증 처리를 진행하기 때문!
 	*/
 	app.config(function($stateProvider, $urlRouterProvider, $controllerProvider, $httpProvider, localStorageServiceProvider){
-		//localStorageServiceProvider.setPrefix('TradersAppV2');
-		//$httpProvider.interceptors.push('AuthInterceptor');
-		//$httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+		localStorageServiceProvider.setPrefix('TradersAppV2');
+		$httpProvider.interceptors.push('AuthInterceptor');
+		$httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 		
 		var origController = app.controller
 		app.controller = function (name, constructor){

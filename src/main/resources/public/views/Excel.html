@@ -6,51 +6,30 @@
             <h3>버튼 클릭 시 입력데이터와 파일 전송</h3>
             <div class="example">
                 <form role="form" name="uploadForm">
-                    <div class="form-group">
-                        <label>파일</label>
+                    <div class="form">
                         <input type="file" ngf-select="onFileSelect2($files)">
-                        <br>
-                        <label>이메일</label>
-                        <input type="email" ng-model="email" class="form-control" placeholder="이메일">
+                        <div class="col-xs-offset-5 col-xs-2">
+                            <!-- 버튼 클릭시 send 메소드 호출 -->
+                            <button type="button" class="btn btn-default" ng-click="send()" ng-disabled="selectedFile == undefined">업로드</button>
+                        </div>
                     </div>
-                    <!-- 버튼 클릭시 send 메소드 호출 -->
-                    <button type="button" class="btn btn-default" ng-click="send()" ng-disabled="selectedFile == undefined">button</button>
                 </form>
                 <br>
-                <!-- 전송 성공시 메시지 출력 -->
-                <div>
-                    {{ successMsg }}
-                </div>
             </div>
         </div>
     </div>
 
-
-
   <table class="table entitytable">
-      <tr>
-          <td><h3>Excel upload</h3></td>
-          <td></td>
-          <td><a  class="btn btn-primary"  ng-click="send()" ng-click="">업로드</a></td>
-
+      <tr ng-show="datas">
+      	<td><strong>#</strong></td>
+        <td><strong>이름</strong></td>
+        <td><strong>이메일</strong></td>
       </tr>
-      <!--<tr>
-      	<td><strong>Username</strong></td>
-        <td><strong>Email</strong></td>
-        <td><strong>Role</strong></td>
-          <td><strong>Action</strong></td>
+      <tr ng-repeat="data in datas">
+          <td>{{data.num}}</td>
+          <td>{{data.name}}</td>
+          <td>{{data.email}}</td>
       </tr>
-      <tr ng-repeat="user in users">
-          <td>{{user.username}}</td>
-          <td>{{user.email}}</td>
-          <td>{{user.role}}</td>
-          <td>
-              &lt;!&ndash;user 의 역할이 관리자이면 다보여주며, 아니면 해당 user 의 view 만 보여준다.&ndash;&gt;
-              <a ng-show="cancreate || user.username == currentUser" class="btn btn-primary" ui-sref="viewUser({id:user.id})">View</a>
-              &lt;!&ndash;user 정보가 있거나, 관리자여야지만 보여진다.&ndash;&gt;
-              <a ng-show="user && cancreate" class="btn btn-danger"  ng-click="deleteUser(user)">Delete</a>
-          </td>
-      </tr>-->
   </table>
     <!-- error message-->
   <div class="alert alert-danger margin-top-2" ng-show="message">데이터가 없습니다.</div>
